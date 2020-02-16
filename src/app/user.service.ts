@@ -32,7 +32,23 @@ export class UserService {
     });
   }
 
-  createUser(email, password) {
+  async userExists(email) {
+    const signInMethods = await this.auth.fetchSignInMethodsForEmail(email);
+    
+    if (signInMethods.length > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  async createUser(email, password) {
+    // createUserWithEmailAndPassword will check this, BUT it also throws "email already registered"
+    // error even when email is not registered, so that's why this hack.
+    if (await this.userExists(email)) {
+      throw new Error('User already exists.');
+    }
+    
     this.auth.createUserWithEmailAndPassword(email, password);
   }
 
@@ -40,7 +56,7 @@ export class UserService {
     this.currentUser = user;
   }
 
-  loginUser(email, password) {
+  async loginUser(email, password) {
     this.auth.signInWithEmailAndPassword(email, password);
   }
 
