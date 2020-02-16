@@ -43,7 +43,7 @@ export class UserService {
   }
 
   async createUser(email, password) {
-    // createUserWithEmailAndPassword will check this, BUT it also throws "email already registered"
+    // createUserWithEmailAndPassword will check this, BUT it also throws "email already in use"
     // error even when email is not registered, so that's why this hack.
     if (await this.userExists(email)) {
       throw new Error('User already exists.');

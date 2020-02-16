@@ -21,6 +21,8 @@ export class GlobalErrorHandler implements ErrorHandler {
     else if (error.message.includes('already exists')) {
       message = 'User already exists.';
     }
+    // auth.createUserWithEmailAndPassword will check this, BUT it also throws "email already in use"
+    // error even when email is not registered, so that's why this hack.
     else if (error.message.includes('already in use')) {
       showMessage = false;
     }

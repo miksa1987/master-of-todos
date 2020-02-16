@@ -18,6 +18,7 @@ import { RegisterModule } from './register/register.module';
 import { TodosModule } from './todos/todos.module';
 
 import { GlobalErrorHandler } from './error.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { GlobalErrorHandler } from './error.service';
       clickToClose: true,
       showProgressBar: true,
       preventDuplicates: true
-    })
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     { provide: ErrorHandler, useClass: GlobalErrorHandler }

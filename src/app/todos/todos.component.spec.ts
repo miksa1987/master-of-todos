@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TodosComponent } from './todos.component';
+import { Router } from '@angular/router';
 import { TodosService } from './todos.service';
 import { Observable } from 'rxjs';
 
@@ -8,6 +9,10 @@ const mockTodosService = {
   todoStates: [ 'active', 'done' ],
   getTodos: () => new Observable<any[]>()
 };
+
+const mockRouter = {
+  navigateByUrl: (url) => {}
+}
 
 describe('TodosComponent', () => {
   let component: TodosComponent;
@@ -17,7 +22,8 @@ describe('TodosComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TodosComponent ],
       providers: [
-        { provide: TodosService, useValue: mockTodosService }
+        { provide: TodosService, useValue: mockTodosService },
+        { provide: Router, useValue: mockRouter }
       ]
     })
     .compileComponents();
