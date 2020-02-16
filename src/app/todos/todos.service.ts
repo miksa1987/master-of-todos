@@ -14,16 +14,7 @@ export class TodosService {
 
   todoStates = [ 'active', 'done' ];
 
-  constructor(public firestore: AngularFirestore, public userService: UserService) {
-    if (userService.currentUser === null) {
-      return;
-    }
-
-    this.setUser({
-      uid: userService.currentUser.uid,
-      email: userService.currentUser.email
-    });
-  }
+  constructor(public firestore: AngularFirestore, public userService: UserService) { }
 
   setUser(user) {
     this.user = user;

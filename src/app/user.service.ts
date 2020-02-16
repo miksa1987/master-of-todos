@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
@@ -13,10 +14,7 @@ export class UserService {
     public auth: AngularFireAuth, 
     public router: Router,
     private notifications: NotificationsService
-  ) {
-    const user = JSON.parse(window.localStorage.getItem('master-of-todos-user-id'));
-    this.currentUser = user;
-  }
+  ) { }
 
   initUser(setUserToTodos) {
     this.auth.onAuthStateChanged((user) => {

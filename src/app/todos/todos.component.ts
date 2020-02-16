@@ -17,6 +17,15 @@ export class TodosComponent {
   currentFilter = 'all';
 
   constructor(public todosService: TodosService, public router: Router) {
+    const subscription = router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        if (!router.navigated) {
+          router.navigateByUrl('/');
+        }
+      }
+    });
+    subscription.unsubscribe();
+
     // I could use route guards, BUT, they, or their redirects gave me nothing but trouble.
     if (!todosService.getUser()) {
       this.router.navigateByUrl('/');
