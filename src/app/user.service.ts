@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,11 @@ import { Router } from '@angular/router';
 export class UserService {
   currentUser;
 
-  constructor(public auth: AngularFireAuth, public router: Router) {
+  constructor(
+    public auth: AngularFireAuth, 
+    public router: Router,
+    private notifications: NotificationsService
+  ) {
     const user = JSON.parse(window.localStorage.getItem('master-of-todos-user-id'));
     this.currentUser = user;
   }
@@ -20,6 +25,7 @@ export class UserService {
         this.setUser(user);
         setUserToTodos({ email: user.email, uid: user.uid });
         this.router.navigateByUrl('/todos');
+        this.notifications.success('Logged in.');
       } else {
         window.localStorage.clear();
       }

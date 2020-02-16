@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { environment } from '../environments/environment';
 
@@ -14,8 +16,8 @@ import { SplashModule } from './splash/splash.module';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
 import { TodosModule } from './todos/todos.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
+
+import { GlobalErrorHandler } from './error.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,6 @@ import { MaterialModule } from './material.module';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     AppRoutingModule,
     SplashModule,
     LoginModule,
@@ -35,10 +36,16 @@ import { MaterialModule } from './material.module';
     AngularFireAuthModule,
     AngularFireAuthGuardModule,
     BrowserAnimationsModule,
-    MaterialModule
+    SimpleNotificationsModule.forRoot({
+      timeOut: 3000,
+      clickToClose: true,
+      showProgressBar: true,
+      preventDuplicates: true
+    })
   ],
-  providers: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+  ], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { TodoItem } from './todo-item.interface';
 import { TodosService } from './todos.service';
 
@@ -16,7 +17,6 @@ export class TodosComponent {
   currentFilter = 'all';
 
   constructor(public todosService: TodosService, public router: Router) {
-
     // I could use route guards, BUT, they, or their redirects gave me nothing but trouble.
     if (!todosService.user) {
       this.router.navigateByUrl('/');
