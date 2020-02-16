@@ -1,0 +1,14 @@
+<div class="rounded-box todo-item">
+  <button *ngIf="todo.state === 'active'" (click)="toggle()" class="toggle-todo-button">
+    <img src="/assets/cross.svg" class="bigger-svg" />
+  </button>
+  
+  <button *ngIf="todo.state === 'done'" (click)="toggle()" class="toggle-todo-button">
+    <img src="/assets/check.svg" class="bigger-svg" />
+  </button>
+  
+  <h2>{{ title }}</h2>
+  <button (click)="remove()" class="remove-todo-button">
+    <img src="/assets/bin.svg" class="bigger-svg" />
+  </button>
+</div>

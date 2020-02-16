@@ -1,0 +1,29 @@
+.top-bar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 1000;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.email-bubble {
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  align-items: stretch;
+}
+
+.user-circle {
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 3px;
+  min-height: 100%;
+  min-width: auto;
+}

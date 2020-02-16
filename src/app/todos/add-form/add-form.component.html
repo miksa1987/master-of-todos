@@ -1,0 +1,7 @@
+<form class="rounded-box add-form-grid fade-in" (submit)="addTodo($event)">
+  <input type="text" placeholder="Add todo..." (input)="updateTitle($event.target.value)" [value]="title" class="add-todo-input" />
+
+  <button (click)="addTodo($event)" type="button" class="add-todo-button">
+    <img src="/assets/plus.svg" class="bigger-svg" />
+  </button>
+</form>

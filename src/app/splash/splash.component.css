@@ -1,0 +1,33 @@
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo {
+  width: 45vw;
+  height: auto;
+}
+
+.placeholder {
+  height: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .buttons {
+    flex-direction: column;
+  }
+
+  .logo {
+    width: 80vw;
+  }
+
+  .placeholder {
+    height: 20rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .placeholder {
+    height: 10rem;
+  }
+}

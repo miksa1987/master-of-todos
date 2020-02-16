@@ -1,0 +1,126 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0px;
+  margin-top: 6rem;
+  min-height: calc(100vh - 6rem);
+
+  color: #282828;
+  font-family: sans-serif;
+
+  background-image: url('/assets/background.jpg');
+  background-size: auto 100vw;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    background-size: 160vh auto;
+  }
+}
+
+h1, h2, h3, h4, h5, p {
+  margin: 0.5rem;
+}
+
+h1, h2, p {
+  font-size: 90%;
+}
+
+button, input {
+  margin: 10px;
+  padding: 10px 20px;
+  border: 0px;
+  border-radius: 4rem;
+  background-color: rgba(39, 46, 110, 0.8);
+  color: white;
+}
+
+input {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: black;
+}
+
+.centered-box { 
+  min-height: calc(100% - 4rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizontally-centered-box {
+  min-height: calc(100% - 4rem);
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.rounded-box {
+  padding: 10px;
+  margin: 0.5rem;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.7);
+  width: 80vw;
+}
+
+.flexbox-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexbox-row-space-between {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flexbox-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.active-button {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: black;
+}
+
+.svg {
+  width: 75%;
+  height: auto;
+}
+
+.bigger-svg {
+  width: 100%;
+  height: auto;
+}
+
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 4rem;
+  max-height: 3rem;
+}
+
+@media screen and (max-width: 600px) {
+  .rounded-box {
+    width: 92vw;
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.5s
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}

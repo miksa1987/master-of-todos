@@ -1,0 +1,15 @@
+<app-top-bar></app-top-bar>
+<div class="horizontally-centered-box flexbox-column fade-in">
+  <app-add-form></app-add-form>
+  <div class="flexbox-row fade-in">
+    <div *ngFor="let filter of filters">
+      <button (click)="setFilter(filter)" [ngClass]="{'active-button': currentFilter === filter}">
+        {{ filter }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngFor="let todo of shownTodos">
+    <app-todo [todo]="todo"></app-todo>
+  </div>
+</div>
