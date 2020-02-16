@@ -5,5 +5,5 @@ export interface TodoItem {
   important: boolean;
   state: string;
   userId: string;
-  dateDue: Date;
+  date: Date;
 }

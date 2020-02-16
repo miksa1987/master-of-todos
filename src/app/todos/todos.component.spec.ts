@@ -45,7 +45,7 @@ describe('TodosComponent', () => {
         title: '',
         additional: '',
         important: true,
-        dateDue: new Date(),
+        date: new Date(),
         state: 'active',
         userId: '123'
       }

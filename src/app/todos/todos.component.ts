@@ -39,8 +39,8 @@ export class TodosComponent {
           handledValues.push(handledValue);
         });
 
-        this.todos = handledValues;
-        this.shownTodos = handledValues;
+        this.todos = handledValues.sort((a, b) => b.date - a.date);
+        this.shownTodos = handledValues.sort((a, b) => b.date - a.date);
       }
     };
     this.todosService.getTodos().subscribe(observer);

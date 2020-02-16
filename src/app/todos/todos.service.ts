@@ -52,6 +52,12 @@ export class TodosService {
     }, { merge: true });
   }
 
+  toggleImportance(todoId, currentImportance) {
+    this.firestore.collection(this.user.uid).doc(todoId).set({
+      important: !currentImportance
+    }, { merge: true });
+  }
+
   getNewStateIndex(currentState) {
     const currentStateIndex = this.todoStates.indexOf(currentState);
     let newIndex = currentStateIndex + 1;

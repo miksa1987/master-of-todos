@@ -13,6 +13,7 @@ export class TodoComponent implements OnInit {
   title = '';
   id = '';
   state = '';
+  important = false;
 
   constructor(public todoService: TodosService) { }
 
@@ -20,13 +21,18 @@ export class TodoComponent implements OnInit {
     this.title = await this.todo.title;
     this.id = await this.todo.id;
     this.state = await this.todo.state;
+    this.important = await this.todo.important;
   }
 
   remove() {
     this.todoService.removeTodo(this.id);
   }
 
-  toggle() {
+  toggleState() {
     this.todoService.toggleState(this.id, this.state);
+  }
+
+  toggleImportance() {
+    this.todoService.toggleImportance(this.id, this.important);
   }
 }

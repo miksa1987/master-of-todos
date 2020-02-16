@@ -22,11 +22,11 @@ export class AddFormComponent {
 
     const todoToAdd: TodoItem = {
       title: this.title,
-      additional: '', // TBD this feature
+      additional: '', // For future use
       important: false, // TBD
       state: 'active',
       userId: this.userService.currentUser.uid,
-      dateDue: new Date() // TBD put custom date
+      date: new Date()
     };
 
     this.todosService.addTodo(todoToAdd);

@@ -29,7 +29,7 @@ describe('TodoComponent', () => {
       title: 'test',
       additional: 'test',
       important: true,
-      dateDue: new Date(),
+      date: new Date(),
       userId: '1',
       state: 'active'
     };
