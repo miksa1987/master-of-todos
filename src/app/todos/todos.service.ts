@@ -8,9 +8,9 @@ import { UserService } from '../user.service';
   providedIn: 'root'
 })
 export class TodosService {
-  todos: Observable<any[]>;
-  returnedTodos;
-  user;
+  private unsubscribe = null;
+  private todos: Observable<any[]>;
+  private user;
 
   todoStates = [ 'active', 'done' ];
 
@@ -29,13 +29,20 @@ export class TodosService {
     this.user = user;
   }
 
+  getUser() {
+    return this.user;
+  }
+
+  setUnsubscribe(unsubscribeFunction) {
+    this.unsubscribe = unsubscribeFunction;
+  }
+
   getTodos() {
-    this.todos = this.firestore.collection(this.user.uid).snapshotChanges();
-    return this.todos;
+    return this.firestore.collection(this.user.uid).snapshotChanges();
   }
 
   emptyTodos() {
-    this.todos = new Observable<any[]>();
+    this.unsubscribe();
   }
 
   addTodo(todoData) {

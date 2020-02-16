@@ -8,6 +8,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   async handleError(error) {
     let showMessage = true;
     let message = error.message;
+    console.log(error);
 
     if (error.message.includes('email address is badly formatted')) {
       message = 'Invalid e-mail address.';
@@ -26,7 +27,6 @@ export class GlobalErrorHandler implements ErrorHandler {
     else if (error.message.includes('already in use')) {
       showMessage = false;
     }
-    
 
     if (showMessage)
       this.notifications.error(message);   

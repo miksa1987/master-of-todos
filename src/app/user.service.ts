@@ -61,7 +61,7 @@ export class UserService {
   }
 
   signOut() {
-    this.auth.signOut();
     this.router.navigateByUrl('/');
+    this.auth.signOut();
   }
 }

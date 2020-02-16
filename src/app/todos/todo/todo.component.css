@@ -1,4 +1,4 @@
 .todo-item {
   display: grid;
-  grid-template: 100% / 4.5rem 1fr 4.5rem;
+  grid-template: 100% / 4.5rem 4.5rem 1fr 4.5rem;
 }

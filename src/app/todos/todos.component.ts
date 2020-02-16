@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 
 import { TodoItem } from './todo-item.interface';
 import { TodosService } from './todos.service';
@@ -18,7 +18,7 @@ export class TodosComponent {
 
   constructor(public todosService: TodosService, public router: Router) {
     // I could use route guards, BUT, they, or their redirects gave me nothing but trouble.
-    if (!todosService.user) {
+    if (!todosService.getUser()) {
       this.router.navigateByUrl('/');
     }
 
@@ -41,9 +41,13 @@ export class TodosComponent {
 
         this.todos = handledValues.sort((a, b) => b.date - a.date);
         this.shownTodos = handledValues.sort((a, b) => b.date - a.date);
-      }
+      },
+      error: () => {},
+      complete: () => {} // Without these two empty functions, apparently the subscription never ends.
     };
-    this.todosService.getTodos().subscribe(observer);
+
+    const subscriber = this.todosService.getTodos().subscribe(observer);
+    this.todosService.setUnsubscribe(subscriber.remove);
   }
 
   setFilter(filter) {
