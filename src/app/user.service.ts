@@ -19,13 +19,10 @@ export class UserService {
   initUser(setUserToTodos) {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
-        window.localStorage.setItem('master-of-todos-user-id', JSON.stringify({ uid: user.uid, email: user.email }));
         this.setUser(user);
         setUserToTodos({ email: user.email, uid: user.uid });
         this.router.navigateByUrl('/todos');
         this.notifications.success('Logged in.');
-      } else {
-        window.localStorage.clear();
       }
     });
   }
