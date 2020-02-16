@@ -34,7 +34,7 @@ button, input {
   padding: 10px 20px;
   border: 0px;
   border-radius: 4rem;
-  background-color: rgba(39, 46, 110, 0.8);
+  background-color: rgba(29, 36, 100, 0.8);
   color: white;
 }
 
@@ -104,6 +104,11 @@ input {
   align-items: center;
   max-width: 4rem;
   max-height: 3rem;
+}
+
+.notification {
+  font-size: 75%;
+  border-radius: 3px;
 }
 
 @media screen and (max-width: 600px) {

@@ -37,7 +37,8 @@ import { GlobalErrorHandler } from './error.service';
     AngularFireAuthGuardModule,
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot({
-      timeOut: 3000,
+      timeOut: 2000,
+      theClass: 'notification',
       clickToClose: true,
       showProgressBar: true,
       preventDuplicates: true
