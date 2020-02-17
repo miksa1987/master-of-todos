@@ -9,6 +9,7 @@ const mockTodosService = {
   todoStates: [ 'active', 'done' ],
   getTodos: () => new Observable<any[]>(),
   getUser: () => ({ uid: '', email: '' }),
+  getTodoStates: () => [ 'active', 'done' ],
   setUnsubscribe: () => {}
 };
 

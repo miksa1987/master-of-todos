@@ -13,5 +13,4 @@ export class SplashComponent {
   navigateTo(route) {
     this.router.navigateByUrl(route);
   }
-
 }

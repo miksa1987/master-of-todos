@@ -3,9 +3,9 @@
     <h1>Register</h1>
     <p>Please fill the required fields below.</p>
 
-    <input (input)="email=$event.target.value" placeholder="E-mail" class="email-input"/>
-    <input (input)="password=$event.target.value" placeholder="Password" type="password" class="password-input"/>
-    <input (input)="repeatedPassword=$event.target.value" placeholder="Repeat password" type="password" class="repeat-password-input"/>
+    <input (input)="setEmail($event.target.value)" placeholder="E-mail" class="email-input"/>
+    <input (input)="setPassword($event.target.value)" placeholder="Password" type="password" class="password-input"/>
+    <input (input)="setRepeatedPassword($event.target.value)" placeholder="Repeat password" type="password" class="repeat-password-input"/>
 
     <div class="flexbox-row-space-between">
       <button (click)="cancel()" class="cancel-button" type="button">

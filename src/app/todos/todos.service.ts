@@ -10,7 +10,7 @@ export class TodosService {
   private unsubscribe = null;
   private user;
 
-  todoStates = [ 'active', 'done' ];
+  private todoStates = [ 'active', 'done' ];
 
   constructor(
     private firestore: AngularFirestore,
@@ -27,6 +27,10 @@ export class TodosService {
 
   getUser() {
     return this.user;
+  }
+
+  getTodoStates() {
+    return this.todoStates;
   }
 
   getTodos() {

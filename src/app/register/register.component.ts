@@ -15,6 +15,18 @@ export class RegisterComponent {
 
   constructor(public userService: UserService, public router: Router) { }
 
+  setEmail(newValue) {
+    this.email = newValue;
+  }
+
+  setPassword(newValue) {
+    this.password = newValue;
+  }
+
+  setRepeatedPassword(newValue) {
+    this.repeatedPassword = newValue;
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     this.register();

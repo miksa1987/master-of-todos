@@ -13,7 +13,7 @@ export class TodosComponent {
   todos: TodoItem[];
   shownTodos: TodoItem[];
 
-  filters = [ ...this.todosService.todoStates, 'all' ];
+  filters = [ ...this.todosService.getTodoStates(), 'all' ];
   currentFilter = 'all';
 
   constructor(public todosService: TodosService, public router: Router) { 
@@ -29,8 +29,8 @@ export class TodosComponent {
       next: (values) => {
         const handledValues = this.todosService.getObserverValueHandler()(values);
 
-        this.todos = handledValues.sort((a, b) => b.date - a.date);
-        this.shownTodos = handledValues.sort((a, b) => b.date - a.date);
+        this.todos = handledValues.sort((a, b) => b.date.seconds - a.date.seconds);
+        this.shownTodos = handledValues.sort((a, b) => b.date.seconds - a.date.seconds);
       },
       error: () => {},
       complete: () => {} // Without these two empty functions, apparently the subscription never ends.

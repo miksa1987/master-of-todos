@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 import { UserService } from './user.service';
 import { TodosService } from './todos/todos.service';
@@ -15,9 +13,7 @@ export class AppComponent {
 
   constructor(
     public userService: UserService,
-    public todosService: TodosService,
-    public auth: AngularFireAuth,
-    public router: Router
+    public todosService: TodosService
   ) { }
 
   ngOnInit(): void {

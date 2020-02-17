@@ -1,15 +1,14 @@
 <div class="rounded-box todo-item">
+  <button (click)="toggleState()" class="toggle-state-button todo-item-button checkbox">
+    <img *ngIf="todo.state === 'done'" src="/assets/ui/check.svg" class="bigger-svg" />
+  </button>
+
   <button (click)="toggleImportance()" class="toggle-importance-button todo-item-button">
     <img *ngIf="todo.important" src="/assets/ui/star-full.svg" class="bigger-svg" />
     <img *ngIf="!todo.important" src="/assets/ui/star-empty.svg" class="bigger-svg" />
   </button>
-  
-  <h2>{{ title }}</h2>
 
-  <button (click)="toggleState()" class="toggle-state-button todo-item-button">
-    <img *ngIf="todo.state === 'active'" src="/assets/ui/cross.svg" class="bigger-svg" />
-    <img *ngIf="todo.state === 'done'" src="/assets/ui/check.svg" class="bigger-svg" />
-  </button>
+  <h2>{{ title }}</h2>
 
   <button (click)="remove()" class="remove-todo-button">
     <img src="/assets/ui/bin.svg" class="bigger-svg" />
