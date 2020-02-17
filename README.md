@@ -13,5 +13,7 @@ Latest version of this app can be found running at https://master-of-todos.fireb
 
 ## Credits
 Hatchful for helping with the logo ( https://hatchful.shopify.com/ )
+
 Icomoon Free pack for UI icons ( https://icomoon.io/app/ )
+
 App background by Glenn Carstens-Peters on Unsplash ( https://unsplash.com/photos/RLw-UC03Gwc )
