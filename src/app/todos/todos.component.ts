@@ -29,8 +29,8 @@ export class TodosComponent {
       next: (values) => {
         const handledValues = this.todosService.getObserverValueHandler()(values);
 
-        this.todos = handledValues.sort((a, b) => b.date.seconds - a.date.seconds);
-        this.shownTodos = handledValues.sort((a, b) => b.date.seconds - a.date.seconds);
+        this.todos = this.sortTodos(handledValues);
+        this.shownTodos = this.sortTodos(handledValues);
       },
       error: () => {},
       complete: () => {} // Without these two empty functions, apparently the subscription never ends.
@@ -56,6 +56,10 @@ export class TodosComponent {
     if (!this.filters.includes(filter)) {
       throw new Error('Not a known filter');
     }
+  }
+
+  sortTodos(todoList) {
+    return todoList.sort((a, b) => b.date.seconds - a.date.seconds).sort((a, b) => b.important - a.important);
   }
 
   checkIfBrowserWasRefreshed() {
