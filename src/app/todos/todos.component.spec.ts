@@ -7,11 +7,18 @@ import { Observable } from 'rxjs';
 
 const mockTodosService = {
   todoStates: [ 'active', 'done' ],
-  getTodos: () => new Observable<any[]>()
+  getTodos: () => new Observable<any[]>(),
+  getUser: () => ({ uid: '', email: '' }),
+  setUnsubscribe: () => {}
 };
 
 const mockRouter = {
-  navigateByUrl: (url) => {}
+  navigateByUrl: (url) => {},
+  events: {
+    subscribe: () => ({
+      unsubscribe: () => {}
+    })
+  }
 }
 
 describe('TodosComponent', () => {

@@ -16,37 +16,18 @@ export class TodosComponent {
   filters = [ ...this.todosService.todoStates, 'all' ];
   currentFilter = 'all';
 
-  constructor(public todosService: TodosService, public router: Router) {
-    const subscription = router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        if (!router.navigated) {
-          router.navigateByUrl('/');
-        }
-      }
-    });
-    subscription.unsubscribe();
+  constructor(public todosService: TodosService, public router: Router) { 
+    // I could use route guards, BUT, they, or their redirects gave me nothing but trouble on this.
+    this.checkIfUserIsAuthorized();
+    this.checkIfBrowserWasRefreshed();
 
-    // I could use route guards, BUT, they, or their redirects gave me nothing but trouble.
-    if (!todosService.getUser()) {
-      this.router.navigateByUrl('/');
-    }
-
-    this.init();
+    this.initTodos();
   }
 
-  init() {
+  initTodos() {
     const observer = {
       next: (values) => {
-        const handledValues = [];
-
-        values.forEach((value) => {
-          const handledValue = {
-            ...value.payload.doc.data(),
-            id: value.payload.doc.id
-          };
-
-          handledValues.push(handledValue);
-        });
+        const handledValues = this.todosService.getObserverValueHandler()(values);
 
         this.todos = handledValues.sort((a, b) => b.date - a.date);
         this.shownTodos = handledValues.sort((a, b) => b.date - a.date);
@@ -61,6 +42,7 @@ export class TodosComponent {
 
   setFilter(filter) {
     this.checkThatFilterExists(filter);
+
     if (filter !== 'all') {
       this.shownTodos = this.todos.filter((todo) => todo.state === filter);
       this.currentFilter = filter;
@@ -73,6 +55,23 @@ export class TodosComponent {
   checkThatFilterExists(filter) {
     if (!this.filters.includes(filter)) {
       throw new Error('Not a known filter');
+    }
+  }
+
+  checkIfBrowserWasRefreshed() {
+    const subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        if (!this.router.navigated) {
+          this.router.navigateByUrl('/');
+        }
+      }
+    });
+    subscription.unsubscribe();
+  }
+
+  checkIfUserIsAuthorized() {
+    if (!this.todosService.getUser()) {
+      this.router.navigateByUrl('/');
     }
   }
 }

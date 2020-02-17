@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -6,6 +7,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { environment } from '../environments/environment';
@@ -19,6 +21,8 @@ import { TodosModule } from './todos/todos.module';
 
 import { GlobalErrorHandler } from './error.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { UserService } from './user.service';
+import { TodosService } from './todos/todos.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AngularFireAuthModule,
     AngularFireAuthGuardModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     SimpleNotificationsModule.forRoot({
       timeOut: 2000,
       theClass: 'notification',
@@ -47,7 +52,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
-    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    UserService,
+    TodosService
   ], 
   bootstrap: [AppComponent]
 })

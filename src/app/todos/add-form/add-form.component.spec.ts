@@ -58,7 +58,7 @@ describe('AddFormComponent', () => {
       important: false, // TBD
       state: 'active',
       userId: '123',
-      dateDue: new Date()
+      date: new Date()
     });
   });
 });

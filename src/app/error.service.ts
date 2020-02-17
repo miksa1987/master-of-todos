@@ -1,9 +1,13 @@
 import { ErrorHandler, Injectable } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
-  constructor(private notifications: NotificationsService) {}
+  constructor(
+    private notifications: NotificationsService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   async handleError(error) {
     let showMessage = true;
@@ -23,11 +27,12 @@ export class GlobalErrorHandler implements ErrorHandler {
       message = 'User already exists.';
     }
     // auth.createUserWithEmailAndPassword will check this, BUT it also throws "email already in use"
-    // error even when email is not registered, so that's why this hack.
+    // error even when email is not registered, so that's why this little hack.
     else if (error.message.includes('already in use')) {
       showMessage = false;
     }
 
+    this.spinner.hide();
     if (showMessage)
       this.notifications.error(message);   
   }

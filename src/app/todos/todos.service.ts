@@ -1,35 +1,54 @@
 import 'firebase/firestore';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { UserService } from '../user.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodosService {
   private unsubscribe = null;
-  private todos: Observable<any[]>;
   private user;
 
   todoStates = [ 'active', 'done' ];
 
-  constructor(public firestore: AngularFirestore, public userService: UserService) { }
+  constructor(
+    private firestore: AngularFirestore,
+    private spinner: NgxSpinnerService
+  ) { }
 
   setUser(user) {
     this.user = user;
-  }
-
-  getUser() {
-    return this.user;
   }
 
   setUnsubscribe(unsubscribeFunction) {
     this.unsubscribe = unsubscribeFunction;
   }
 
+  getUser() {
+    return this.user;
+  }
+
   getTodos() {
+    this.spinner.show();
     return this.firestore.collection(this.user.uid).snapshotChanges();
+  }
+
+  getObserverValueHandler() {
+    return (values) => {
+      const handledValues = [];
+
+      values.forEach((value) => {
+        const handledValue = {
+          ...value.payload.doc.data(),
+          id: value.payload.doc.id
+        };
+
+        handledValues.push(handledValue);
+      });
+
+      return handledValues;
+    }
   }
 
   emptyTodos() {

@@ -9,7 +9,8 @@ describe('TodoComponent', () => {
 
   const mockTodosService = {
     removeTodo: (todoId) => {},
-    toggleState: (todoId) => {}
+    toggleState: (todoId, currentState) => {},
+    toggleImportance: (todoId, currentImportance) => {}
   };
 
   beforeEach(async(() => {
@@ -40,12 +41,21 @@ describe('TodoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('toggle calls right function', () => {
+  it('toggle state calls right function', () => {
     spyOn(mockTodosService, 'toggleState');
 
-    const toggleButton = fixture.nativeElement.querySelector('.toggle-todo-button');
+    const toggleButton = fixture.nativeElement.querySelector('.toggle-state-button');
     toggleButton.click();
     expect(mockTodosService.toggleState).toHaveBeenCalledTimes(1);
+  });
+
+  it('toggle importance calls right function', () => {
+    spyOn(mockTodosService, 'toggleImportance');
+
+    const toggleButton = fixture.nativeElement.querySelector('.toggle-importance-button');
+    toggleButton.click();
+    console.log(mockTodosService.toggleImportance)
+    expect(mockTodosService.toggleImportance).toHaveBeenCalledTimes(1);
   });
 
   it('remove calls right function', () => {

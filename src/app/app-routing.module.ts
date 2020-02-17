@@ -9,7 +9,7 @@ import { TodosComponent } from './todos/todos.component';
 const routes: Routes = [
   {
     path: 'todos',
-    component: TodosComponent
+    component: TodosComponent,
   },
   {
     path: 'login',
