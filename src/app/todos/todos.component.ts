@@ -59,7 +59,9 @@ export class TodosComponent {
   }
 
   sortTodos(todoList) {
-    return todoList.sort((a, b) => b.date.seconds - a.date.seconds).sort((a, b) => b.important - a.important);
+    return todoList
+      .sort((a, b) => b.date.seconds - a.date.seconds)
+      .sort((a, b) => b.important - a.important);
   }
 
   checkIfBrowserWasRefreshed() {

@@ -2,6 +2,7 @@
   display: grid;
   grid-template: 100% / 2.2rem 2.2rem 1fr 4.5rem;
   align-items: center;
+  margin-top: 3px;
 }
 
 .todo-item-button {

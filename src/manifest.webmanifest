@@ -2,7 +2,7 @@
   "name": "master-of-todos",
   "short_name": "master-of-todos",
   "theme_color": "#282828",
-  "background_color": "#282828",
+  "background_color": "#000000",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",

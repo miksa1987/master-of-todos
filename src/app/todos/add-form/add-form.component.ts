@@ -18,6 +18,7 @@ export class AddFormComponent {
 
   updateTitle(value) {
     this.title = value;
+    window.scrollTo(0, 0);
   }
 
   async addTodo(event) {
